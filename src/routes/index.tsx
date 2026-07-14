@@ -9,8 +9,14 @@ import { Stats } from "@/components/site/Stats";
 import { Gallery } from "@/components/site/Gallery";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+import heroBg from "@/assets/hero-bg.jpg";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [
+      { rel: "preload", as: "image", href: heroBg, fetchpriority: "high" },
+    ],
+  }),
   component: Index,
 });
 
