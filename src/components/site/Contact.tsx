@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useId, useState, type FormEvent } from "react";
 import { Reveal, SectionHeader } from "./Reveal";
 import { Mail, Phone, MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
 
@@ -54,10 +54,14 @@ export function Contact() {
               </div>
 
               <div className="mt-5">
-                <label className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                <label
+                  htmlFor="contact-details"
+                  className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+                >
                   Project Details
                 </label>
                 <textarea
+                  id="contact-details"
                   name="details"
                   rows={5}
                   required
@@ -123,13 +127,18 @@ function Field({
   type?: string;
   required?: boolean;
 }) {
+  const id = useId();
   return (
     <div>
-      <label className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+      <label
+        htmlFor={id}
+        className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+      >
         {label}
         {required && <span className="text-primary">*</span>}
       </label>
       <input
+        id={id}
         type={type}
         name={name}
         required={required}
