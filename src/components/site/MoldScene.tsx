@@ -1,7 +1,6 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   ContactShadows,
-  Environment,
   OrbitControls,
   type OrbitControlsProps,
 } from "@react-three/drei";
@@ -216,16 +215,17 @@ export function MoldScene({ scrollProgress, onFirstInteract }: SceneProps) {
       <fog attach="fog" args={["#0a0a0a", 8, 18]} />
 
       <Suspense fallback={null}>
-        <Environment preset="studio" environmentIntensity={0.6} />
-        <ambientLight intensity={0.15} />
+        <ambientLight intensity={0.55} />
+        <hemisphereLight args={["#ffffff", "#0a0a0a", 0.35]} />
         <directionalLight
           position={[5, 6, 4]}
-          intensity={1.2}
+          intensity={1.4}
           castShadow
           shadow-mapSize={[1024, 1024]}
           shadow-bias={-0.0002}
         />
-        <directionalLight position={[-4, 3, -2]} intensity={0.4} color="#d40017" />
+        <directionalLight position={[-5, 3, -2]} intensity={0.6} color="#d40017" />
+        <directionalLight position={[0, 4, -6]} intensity={0.4} color="#8fb3ff" />
 
         <Mold
           openAmount={openAmount}
