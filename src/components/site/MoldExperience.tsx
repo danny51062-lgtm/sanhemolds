@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { Component, lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { MousePointer2, ChevronDown } from "lucide-react";
 import { Reveal, SectionHeader } from "./Reveal";
@@ -6,6 +6,13 @@ import { Reveal, SectionHeader } from "./Reveal";
 const MoldScene = lazy(() =>
   import("./MoldScene").then((m) => ({ default: m.MoldScene })),
 );
+
+class SceneErrorBoundary extends Component<{ children: ReactNode; fallback: ReactNode }, { hasError: boolean }> {
+  state = { hasError: false };
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(err: unknown) { console.error("MoldScene error:", err); }
+  render() { return this.state.hasError ? this.props.fallback : this.props.children; }
+}
 
 export function MoldExperience() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -76,12 +83,14 @@ export function MoldExperience() {
 
         <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent">
           {mounted && inView ? (
-            <Suspense fallback={<SceneFallback />}>
-              <MoldScene
-                scrollProgress={scrollRot}
-                onFirstInteract={() => setInteracted(true)}
-              />
-            </Suspense>
+            <SceneErrorBoundary fallback={<SceneFallback />}>
+              <Suspense fallback={<SceneFallback />}>
+                <MoldScene
+                  scrollProgress={scrollRot}
+                  onFirstInteract={() => setInteracted(true)}
+                />
+              </Suspense>
+            </SceneErrorBoundary>
           ) : (
             <SceneFallback />
           )}
