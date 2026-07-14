@@ -83,12 +83,14 @@ export function MoldExperience() {
 
         <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent">
           {mounted && inView ? (
-            <Suspense fallback={<SceneFallback />}>
-              <MoldScene
-                scrollProgress={scrollRot}
-                onFirstInteract={() => setInteracted(true)}
-              />
-            </Suspense>
+            <SceneErrorBoundary fallback={<SceneFallback />}>
+              <Suspense fallback={<SceneFallback />}>
+                <MoldScene
+                  scrollProgress={scrollRot}
+                  onFirstInteract={() => setInteracted(true)}
+                />
+              </Suspense>
+            </SceneErrorBoundary>
           ) : (
             <SceneFallback />
           )}
