@@ -90,10 +90,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
+      { title: "SANHE MOLDS" },
+      { property: "og:title", content: "SANHE MOLDS" },
+      { name: "twitter:title", content: "SANHE MOLDS" },
+      { name: "description", content: "A premium, dark-themed corporate website showcasing precision mold manufacturing services." },
+      { property: "og:description", content: "A premium, dark-themed corporate website showcasing precision mold manufacturing services." },
+      { name: "twitter:description", content: "A premium, dark-themed corporate website showcasing precision mold manufacturing services." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5e2eb3f4-7278-4ba5-af8e-f198925c42a2/id-preview-970f1c25--b26353e5-3b7f-43c3-b092-32722aa25502.lovable.app-1784045047795.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5e2eb3f4-7278-4ba5-af8e-f198925c42a2/id-preview-970f1c25--b26353e5-3b7f-43c3-b092-32722aa25502.lovable.app-1784045047795.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
