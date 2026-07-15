@@ -24,42 +24,34 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative py-32">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{ background: "radial-gradient(900px circle at 80% 20%, rgba(212,0,23,0.08), transparent 60%)" }}
-      />
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="services" className="relative bg-white py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeader
           eyebrow="Services"
-          title={<>End-to-end mold solutions, from <span className="text-metallic">concept to production</span>.</>}
+          title={<>End-to-end mold solutions, from <span className="text-accent">concept to production</span>.</>}
           description="Eight specialized capabilities under one roof, engineered for reliability and long tool life."
         />
 
-        <div className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
-            <Reveal key={s.title} delay={(i % 4) * 0.06}>
+            <Reveal key={s.title} delay={(i % 4) * 0.05}>
               <a
                 href="#contact"
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-surface/60 p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-white/25 hover:shadow-[0_30px_60px_-30px_rgba(0,0,0,0.9)]"
+                className="group flex h-full flex-col rounded-2xl border border-border bg-white p-7 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-12px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[0_20px_40px_-20px_rgba(15,23,42,0.2)]"
               >
-                <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-
-                <div className="mb-8 flex items-start justify-between">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-white/[0.12] to-transparent ring-1 ring-white/10">
-                    <s.icon size={20} strokeWidth={1.5} className="text-silver transition-colors group-hover:text-primary" />
+                <div className="mb-6 flex items-start justify-between">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-surface text-steel ring-1 ring-border transition-colors group-hover:bg-primary/5 group-hover:text-primary">
+                    <s.icon size={22} strokeWidth={1.6} />
                   </div>
                   <ArrowUpRight
                     size={18}
                     className="text-muted-foreground transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary"
                   />
                 </div>
-
-                <h3 className="font-display text-lg font-semibold text-foreground">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-
-                <div className="mt-6 flex items-center gap-2 border-t border-white/5 pt-4 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                  <span>Request Quote</span>
+                <h3 className="font-display text-lg font-semibold text-navy">{s.title}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                <div className="mt-6 border-t border-border pt-4 text-[11px] uppercase tracking-[0.2em] text-primary">
+                  Request Quote
                 </div>
               </a>
             </Reveal>

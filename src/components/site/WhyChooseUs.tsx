@@ -12,29 +12,26 @@ const items = [
 
 export function WhyChooseUs() {
   return (
-    <section id="why" className="relative py-32">
+    <section id="why" className="section-light relative py-28 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeader
           eyebrow="Why Choose Us"
-          title={<>Built for the demands of <span className="text-metallic">modern manufacturing</span>.</>}
+          title={<>Built for the demands of <span className="text-accent">modern manufacturing</span>.</>}
           description="Six reasons why leading OEMs trust Sanhe with their most critical tooling programs."
         />
 
-        <div className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it, i) => (
             <Reveal key={it.title} delay={(i % 3) * 0.06}>
-              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-8 transition-all duration-500 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_50px_-10px_rgba(212,0,23,0.5)]">
-                <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-primary/0 blur-3xl transition-all duration-500 group-hover:bg-primary/20" />
-                <div className="relative">
-                  <div className="mb-6 inline-grid h-14 w-14 place-items-center rounded-xl bg-gradient-to-br from-white/[0.12] via-white/[0.06] to-transparent ring-1 ring-white/10">
-                    <it.icon size={22} strokeWidth={1.5} className="text-silver transition-colors group-hover:text-primary" />
-                  </div>
-                  <div className="mb-2 font-mono text-[11px] tracking-[0.25em] text-muted-foreground">
-                    0{i + 1}
-                  </div>
-                  <h3 className="font-display text-xl font-semibold text-foreground">{it.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{it.text}</p>
+              <div className="group h-full rounded-2xl border border-border bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-12px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-20px_rgba(15,23,42,0.2)]">
+                <div className="mb-6 inline-grid h-14 w-14 place-items-center rounded-xl bg-navy/5 text-navy ring-1 ring-navy/10 transition-colors group-hover:bg-primary/5 group-hover:text-primary">
+                  <it.icon size={24} strokeWidth={1.6} />
                 </div>
+                <div className="mb-2 font-mono text-[11px] tracking-[0.25em] text-muted-foreground">
+                  0{i + 1}
+                </div>
+                <h3 className="font-display text-xl font-semibold text-navy">{it.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{it.text}</p>
               </div>
             </Reveal>
           ))}

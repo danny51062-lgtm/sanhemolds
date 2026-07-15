@@ -26,8 +26,8 @@ export function SiteNav() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "border-b border-white/5 bg-background/70 backdrop-blur-xl backdrop-saturate-150"
-          : "border-b border-transparent bg-transparent"
+          ? "border-b border-border bg-white/90 backdrop-blur-xl"
+          : "border-b border-transparent bg-white/40 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-4 sm:flex sm:justify-between lg:px-10">
@@ -35,7 +35,7 @@ export function SiteNav() {
           <img
             src={logoAsset.url}
             alt="Wenzhou Sanhe Mold"
-            className="h-10 w-10 shrink-0 object-contain drop-shadow-[0_0_12px_rgba(212,0,23,0.35)]"
+            className="h-10 w-10 shrink-0 object-contain"
           />
           <div className="min-w-0 leading-tight">
             <div className="truncate font-display text-sm font-semibold tracking-wide text-foreground">
@@ -52,7 +52,7 @@ export function SiteNav() {
             <a
               key={l.href}
               href={l.href}
-              className="group relative text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="group relative text-sm font-medium text-steel transition-colors hover:text-primary"
             >
               {l.label}
               <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
@@ -63,14 +63,13 @@ export function SiteNav() {
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="group relative hidden overflow-hidden rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-[0_0_30px_-8px_rgba(212,0,23,0.6)] transition-all hover:shadow-[0_0_40px_-4px_rgba(212,0,23,0.8)] sm:inline-flex"
+            className="hidden rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-flex"
           >
-            <span className="relative z-10">Request a Quote</span>
-            <span className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-500 group-hover:translate-x-0" />
+            Request a Quote
           </a>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 text-foreground lg:hidden"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border text-foreground lg:hidden"
             aria-label="Toggle menu"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
@@ -79,14 +78,14 @@ export function SiteNav() {
       </div>
 
       {open && (
-        <div className="border-t border-white/5 bg-background/95 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-border bg-white lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-6 py-4">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-sm text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+                className="rounded-lg px-3 py-3 text-sm text-steel transition-colors hover:bg-surface hover:text-primary"
               >
                 {l.label}
               </a>

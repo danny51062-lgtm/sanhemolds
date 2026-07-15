@@ -30,11 +30,11 @@ function StatItem({ value, suffix, label, active }: { value: number; suffix: str
   const n = useCountUp(value, active);
   return (
     <div>
-      <div className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-tight text-foreground">
+      <div className="font-display text-[clamp(2.5rem,5vw,4rem)] font-semibold leading-none tracking-tight text-white">
         {n.toLocaleString()}
         <span className="text-primary">{suffix}</span>
       </div>
-      <div className="mt-3 text-xs uppercase tracking-[0.25em] text-muted-foreground">{label}</div>
+      <div className="mt-3 text-xs uppercase tracking-[0.25em] text-slate-400">{label}</div>
     </div>
   );
 }
@@ -53,28 +53,21 @@ export function Stats() {
           io.disconnect();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
   return (
-    <section ref={ref} className="relative py-28">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <section ref={ref} className="section-dark relative py-24 lg:py-28">
+      <div className="grid-lines-dark pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-surface via-surface-2/60 to-surface p-10 sm:p-16">
-            <div
-              className="pointer-events-none absolute inset-0 opacity-70"
-              style={{ background: "radial-gradient(700px circle at 50% 0%, rgba(212,0,23,0.15), transparent 60%)" }}
-            />
-            <div className="grid-lines pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]" />
-
-            <div className="relative grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-              {stats.map((s) => (
-                <StatItem key={s.label} {...s} active={active} />
-              ))}
-            </div>
+          <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {stats.map((s) => (
+              <StatItem key={s.label} {...s} active={active} />
+            ))}
           </div>
         </Reveal>
       </div>

@@ -2,8 +2,8 @@ import { motion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
 
 const variants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
 export function Reveal({
@@ -37,32 +37,45 @@ export function SectionHeader({
   title,
   description,
   align = "left",
+  tone = "light",
 }: {
   eyebrow: string;
   title: ReactNode;
   description?: string;
   align?: "left" | "center";
+  tone?: "light" | "dark";
 }) {
+  const isDark = tone === "dark";
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       <Reveal>
         <div
-          className={`inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] uppercase tracking-[0.3em] text-muted-foreground ${
-            align === "center" ? "mx-auto" : ""
-          }`}
+          className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] uppercase tracking-[0.3em] ${
+            isDark
+              ? "border-white/15 bg-white/5 text-slate-300"
+              : "border-border bg-surface text-muted-foreground"
+          } ${align === "center" ? "mx-auto" : ""}`}
         >
           <span className="h-1 w-1 rounded-full bg-primary" />
           {eyebrow}
         </div>
       </Reveal>
       <Reveal delay={0.05}>
-        <h2 className="mt-5 text-balance font-display text-[clamp(2rem,4.5vw,3.5rem)] font-semibold leading-[1.05] tracking-tight text-foreground">
+        <h2
+          className={`mt-5 text-balance font-display text-[clamp(2rem,4.5vw,3.25rem)] font-semibold leading-[1.05] tracking-tight ${
+            isDark ? "text-white" : "text-navy"
+          }`}
+        >
           {title}
         </h2>
       </Reveal>
       {description && (
         <Reveal delay={0.1}>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p
+            className={`mt-5 text-base leading-relaxed sm:text-lg ${
+              isDark ? "text-slate-300" : "text-steel"
+            }`}
+          >
             {description}
           </p>
         </Reveal>
