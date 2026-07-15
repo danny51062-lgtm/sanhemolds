@@ -16,29 +16,25 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-32">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-60"
-        style={{ background: "radial-gradient(900px circle at 50% 30%, rgba(212,0,23,0.1), transparent 60%)" }}
-      />
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+    <section id="contact" className="section-light relative py-28 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeader
           eyebrow="Contact"
-          title={<>Let's Build Something <span className="text-metallic">Extraordinary Together</span></>}
-          description="Whether you need custom molds or large-scale manufacturing solutions, we're ready to help bring your ideas to life."
+          title={<>Let's build something <span className="text-accent">extraordinary together</span>.</>}
+          description="Whether you need custom molds or large-scale manufacturing solutions, our engineering team is ready to help."
         />
 
-        <div className="mt-20 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
+        <div className="mt-14 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
           <Reveal>
             <form
               onSubmit={onSubmit}
-              className="glass-strong relative overflow-hidden rounded-3xl p-8 sm:p-10"
+              className="relative overflow-hidden rounded-2xl border border-border bg-white p-8 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_20px_50px_-30px_rgba(15,23,42,0.2)] sm:p-10"
             >
               {sent && (
-                <div className="absolute inset-0 z-10 grid place-items-center bg-background/80 backdrop-blur-sm">
+                <div className="absolute inset-0 z-10 grid place-items-center bg-white/95 backdrop-blur-sm">
                   <div className="text-center">
-                    <CheckCircle2 size={40} className="mx-auto text-primary" />
-                    <h3 className="mt-4 font-display text-2xl font-semibold text-foreground">Message received</h3>
+                    <CheckCircle2 size={44} className="mx-auto text-primary" />
+                    <h3 className="mt-4 font-display text-2xl font-semibold text-navy">Message received</h3>
                     <p className="mt-2 max-w-sm text-sm text-muted-foreground">
                       Thank you. Our engineering team will get back to you within one business day.
                     </p>
@@ -56,7 +52,7 @@ export function Contact() {
               <div className="mt-5">
                 <label
                   htmlFor="contact-details"
-                  className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+                  className="mb-2 block text-[11px] font-medium uppercase tracking-[0.2em] text-steel"
                 >
                   Project Details
                 </label>
@@ -65,7 +61,7 @@ export function Contact() {
                   name="details"
                   rows={5}
                   required
-                  className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                  className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-navy placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                   placeholder="Tell us about your part, expected volumes, material and timeline…"
                 />
               </div>
@@ -73,7 +69,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-medium text-primary-foreground shadow-[0_0_40px_-8px_rgba(212,0,23,0.7)] transition-all hover:shadow-[0_0_60px_-4px_rgba(212,0,23,0.9)] disabled:opacity-60"
+                className="group mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
               >
                 {loading ? "Sending…" : "Request a Quote"}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -101,9 +97,9 @@ export function Contact() {
                 value="wxid_2la3g5ov9c8b22"
               />
 
-              <div className="glass mt-auto rounded-2xl p-6">
+              <div className="mt-auto rounded-2xl border border-border bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)]">
                 <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Hours</div>
-                <div className="mt-2 font-display text-lg text-foreground">Mon – Sat · 8:30 – 18:00 CST</div>
+                <div className="mt-2 font-display text-lg text-navy">Mon – Sat · 8:30 – 18:00 CST</div>
                 <p className="mt-2 text-xs text-muted-foreground">
                   Wenzhou, Zhejiang, China · Serving clients across 30+ countries.
                 </p>
@@ -132,7 +128,7 @@ function Field({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-muted-foreground"
+        className="mb-2 block text-[11px] font-medium uppercase tracking-[0.2em] text-steel"
       >
         {label}
         {required && <span className="text-primary">*</span>}
@@ -142,7 +138,7 @@ function Field({
         type={type}
         name={name}
         required={required}
-        className="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+        className="w-full rounded-lg border border-border bg-white px-4 py-3 text-sm text-navy placeholder:text-muted-foreground/70 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
       />
     </div>
   );
@@ -163,14 +159,14 @@ function ContactCard({
   return (
     <Wrap
       href={href}
-      className="glass group flex items-center gap-5 rounded-2xl p-6 transition-all hover:-translate-y-0.5 hover:border-primary/40"
+      className="group flex items-center gap-5 rounded-2xl border border-border bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[0_10px_30px_-15px_rgba(15,23,42,0.2)]"
     >
-      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-white/[0.12] to-transparent ring-1 ring-white/10">
-        <Icon size={20} strokeWidth={1.5} className="text-silver transition-colors group-hover:text-primary" />
+      <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-surface text-steel ring-1 ring-border transition-colors group-hover:bg-primary/5 group-hover:text-primary">
+        <Icon size={20} strokeWidth={1.75} />
       </div>
       <div className="min-w-0">
         <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{label}</div>
-        <div className="mt-1 truncate font-display text-base text-foreground">{value}</div>
+        <div className="mt-1 truncate font-display text-base text-navy">{value}</div>
       </div>
     </Wrap>
   );

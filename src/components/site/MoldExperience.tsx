@@ -55,22 +55,21 @@ export function MoldExperience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="relative isolate overflow-hidden bg-background"
+      className="section-dark relative isolate overflow-hidden"
     >
-      {/* subtle blend gradient with hero above */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-background to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-background to-transparent" />
+      <div className="grid-lines-dark pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
 
       <div className="mx-auto max-w-7xl px-6 pt-24 lg:px-10 lg:pt-28">
         <SectionHeader
           eyebrow="Interactive Showcase"
           title={
             <>
-              Experience <span className="text-metallic">Precision Engineering</span>
+              Experience <span className="text-accent">Precision Engineering</span>
             </>
           }
-          description="Discover how our precision molds are crafted. Interact with a realistic 3D mold and explore our engineering quality."
+          description="Interact with a realistic 3D mold and explore the level of detail behind every Sanhe tool."
           align="center"
+          tone="dark"
         />
       </div>
 
@@ -78,10 +77,10 @@ export function MoldExperience() {
         style={{ opacity: fade }}
         className="relative mx-auto mt-10 h-[70vh] w-full max-w-6xl px-4 sm:h-[75vh] lg:h-[80vh] lg:px-10"
       >
-        {/* Ambient red glow */}
-        <div className="pointer-events-none absolute inset-x-10 bottom-10 -z-10 h-40 rounded-full bg-primary/20 blur-3xl" />
+        {/* Ambient accent glow */}
+        <div className="pointer-events-none absolute inset-x-10 bottom-10 -z-10 h-40 rounded-full bg-primary/10 blur-3xl" />
 
-        <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.03] to-transparent">
+        <div className="relative h-full w-full overflow-hidden rounded-3xl border border-white/10 bg-[#0B1220]">
           {mounted && inView ? (
             <SceneErrorBoundary fallback={<SceneFallback />}>
               <Suspense fallback={<SceneFallback />}>
@@ -116,7 +115,7 @@ export function MoldExperience() {
         </div>
 
         <Reveal>
-          <p className="mx-auto mt-6 max-w-xl text-center text-xs uppercase tracking-[0.3em] text-muted-foreground/70">
+          <p className="mx-auto mt-6 max-w-xl text-center text-xs uppercase tracking-[0.3em] text-slate-400">
             Brushed Steel · Studio Lighting · Real-Time
           </p>
         </Reveal>
