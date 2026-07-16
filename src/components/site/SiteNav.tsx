@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import logoAsset from "@/assets/sanhe-logo.png.asset.json";
+import logoAsset from "@/assets/sanhe-logo.png";
 
 const links = [
   { href: "#home", label: "Home" },
@@ -33,7 +33,7 @@ export function SiteNav() {
       <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 py-4 sm:flex sm:justify-between lg:px-10">
         <a href="#home" className="flex min-w-0 items-center gap-3">
           <img
-            src={logoAsset.url}
+            src={logoAsset}
             alt="Wenzhou Sanhe Mold"
             className="h-10 w-10 shrink-0 object-contain"
           />

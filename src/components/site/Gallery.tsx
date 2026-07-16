@@ -1,24 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal, SectionHeader } from "./Reveal";
-import g1 from "@/assets/gallery-1.jpg.asset.json";
-import g2 from "@/assets/gallery-2.jpg.asset.json";
-import g3 from "@/assets/gallery-3.jpg.asset.json";
-import g4 from "@/assets/gallery-4.jpg.asset.json";
-import g5 from "@/assets/gallery-5.jpg.asset.json";
-import g6 from "@/assets/gallery-6.jpg.asset.json";
-import g7 from "@/assets/gallery-7.jpg.asset.json";
-import g8 from "@/assets/gallery-8.jpg.asset.json";
+import g1 from "@/assets/gallery-1.jpg";
+import g2 from "@/assets/gallery-2.jpg";
+import g3 from "@/assets/gallery-3.jpg";
+import g4 from "@/assets/gallery-4.jpg";
+import g5 from "@/assets/gallery-5.jpg";
+import g6 from "@/assets/gallery-6.jpg";
+import g7 from "@/assets/gallery-7.jpg";
+import g8 from "@/assets/gallery-8.jpg";
 
 const images = [
-  { src: g1.url, alt: "Precision-machined injection mold assemblies", label: "Injection Molds" },
-  { src: g2.url, alt: "EDM wire-cutting machine in Sanhe workshop", label: "EDM Machining" },
-  { src: g3.url, alt: "Row of finished mold bases ready for assembly", label: "Finished Molds" },
-  { src: g4.url, alt: "Two-cavity plastic mold with molded parts", label: "Mold Trial" },
-  { src: g5.url, alt: "Dual CNC wire EDM machines in production", label: "Facility" },
-  { src: g6.url, alt: "CNC drilling with coolant on mold block", label: "CNC Machining" },
-  { src: g7.url, alt: "Copper EDM electrodes on precision machine", label: "Electrodes" },
-  { src: g8.url, alt: "JIATIE CNC engraving and milling center", label: "CNC Center" },
+  { src: g1, alt: "Precision-machined injection mold assemblies", label: "Injection Molds" },
+  { src: g2, alt: "EDM wire-cutting machine in Sanhe workshop", label: "EDM Machining" },
+  { src: g3, alt: "Row of finished mold bases ready for assembly", label: "Finished Molds" },
+  { src: g4, alt: "Two-cavity plastic mold with molded parts", label: "Mold Trial" },
+  { src: g5, alt: "Dual CNC wire EDM machines in production", label: "Facility" },
+  { src: g6, alt: "CNC drilling with coolant on mold block", label: "CNC Machining" },
+  { src: g7, alt: "Copper EDM electrodes on precision machine", label: "Electrodes" },
+  { src: g8, alt: "JIATIE CNC engraving and milling center", label: "CNC Center" },
 ];
 
 export function Gallery() {

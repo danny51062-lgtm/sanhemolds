@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight, ArrowDown } from "lucide-react";
-import factoryHero from "@/assets/factory-hero.jpg.asset.json";
+import factoryHero from "@/assets/factory-hero.jpg";
 
 export function Hero() {
   return (
@@ -12,7 +12,7 @@ export function Hero() {
       <div
         className="absolute inset-0 -z-30 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${factoryHero.url})`,
+          backgroundImage: `url(${factoryHero})`,
           filter: "blur(2px)",
           transform: "scale(1.05)",
           opacity: 0.35,
