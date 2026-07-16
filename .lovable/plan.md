@@ -1,51 +1,47 @@
-## Wenzhou Sanhe Mold — Premium Corporate Site
+## Problem
 
-A single-page dark, luxury industrial site inspired by TRIONN's smoothness, with the uploaded logo as the brand anchor and red (#D40017) as the sole accent.
+Images in your GitHub repo appear "removed" because they were never committed as binaries. The repo only contains tiny `.asset.json` pointer files (e.g. `src/assets/gallery-1.jpg.asset.json`) whose URLs (`/__l5e/assets-v1/...`) only resolve on Lovable's hosting. Anywhere else — local dev, Vercel, Netlify — those URLs 404.
 
-### Design system (src/styles.css)
-- Palette tokens: `--background #0A0A0A`, `--surface #1A1A1A`, `--foreground #F5F5F5`, `--muted-foreground` silver, `--accent #D40017`, `--border` subtle white/10.
-- Gradients: metallic silver (`linear-gradient(135deg,#e8e8e8,#8a8a8a,#3a3a3a)`), red glow, radial spotlight for hero.
-- Shadows: `--shadow-glow` (red), `--shadow-elevated` (deep black), `--shadow-glass`.
-- Glass utility: `bg-white/[0.03] backdrop-blur-xl border border-white/10`.
-- Fonts loaded via `<link>` in `__root.tsx`: Space Grotesk (headings) + Inter (body); registered as `--font-display` / `--font-sans` in `@theme`.
-- Motion via `motion/react` for fade-up, stagger, and count-up.
+## Fix
 
-### Route & structure
-- Keep single home route `src/routes/index.tsx`. Update `__root.tsx` head with real title/description/OG for the company.
-- Uploaded logo saved via `lovable-assets` and imported where the logo appears (nav, about background watermark, footer).
-- Sections implemented as components in `src/components/site/`:
-  - `SiteNav.tsx` — sticky, transparent → blurred glass on scroll, mobile sheet menu, right-side red "Request a Quote" CTA.
-  - `Hero.tsx` — full-screen; animated particle canvas + radial spotlight that follows cursor; centerpiece is a CSS/SVG metallic hex mold (matches logo geometry) with slow rotation and mouse-parallax lighting; H1 + subhead + two CTAs.
-  - `About.tsx` — big headline "Engineering Excellence. Built on Precision.", intro copy, three pillars (Quality First / Pursue Excellence / Trust & Reliability), faint centered logo watermark.
-  - `WhyChooseUs.tsx` — six glass cards, metallic Lucide icons, hover lift + red glow ring.
-  - `Services.tsx` — eight service cards with icon, title, short description, subtle 3D tilt on hover.
-  - `Stats.tsx` — four counters (50,000+, 30+, 100,000+, 99%) animating on viewport enter via IntersectionObserver.
-  - `Gallery.tsx` — masonry (CSS columns) of generated mold/factory images, rounded corners, dark overlay, zoom-on-hover.
-  - `Contact.tsx` — glass form (Full Name, Company, Email, Phone, Project Details) + contact info column (email, phone, WeChat) with icons. Form is presentation-only: on submit shows a toast "Thanks — we'll get back to you"; no backend.
-  - `Footer.tsx` — logo, tagline "Quality First • Pursue Excellence", nav links, copyright.
+Download every CDN-hosted asset back into the repo as a real file and rewire imports to use the file directly.
 
-### Imagery
-- Generate with `imagegen`, save to `src/assets/`:
-  - Hero background (dark industrial shop floor, soft rim lighting) — used behind particles.
-  - 6–8 gallery images: precision mold close-ups, CNC machining, injection mold halves, die-cast parts, factory interior, QC inspection.
-- Uploaded logo → `src/assets/logo.png.asset.json` via `lovable-assets` and imported.
+### Files to migrate (11 total)
 
-### Animations
-- `motion/react` variants: fadeUp (y:24 → 0, opacity), stagger children 0.08s, `whileInView` with `once: true, margin: "-10% 0px"`.
-- Count-up hook for stats.
-- Nav scroll listener toggles a `scrolled` class → adds blur + border.
-- Respect `prefers-reduced-motion`.
+- `src/assets/factory-hero.jpg`
+- `src/assets/factory-about.jpg`
+- `src/assets/gallery-1.jpg` … `src/assets/gallery-8.jpg`
+- `src/assets/sanhe-logo.png`
 
-### Responsive
-- Mobile-first: hero text scales via `clamp()`; nav collapses to sheet; services/why-us grids: 1 → 2 → 3 cols; gallery columns 1 → 2 → 3; stats 2 → 4.
-- Follow the responsive header pattern (grid on mobile, flex on `sm:`, `min-w-0`, `truncate`, `shrink-0`) for nav rows.
+### Steps
 
-### SEO / head
-- Title: "Wenzhou Sanhe Mold Co., Ltd. — Precision Mold Manufacturing".
-- Description: engineered injection, plastic, rubber, die-casting and automotive molds for global industries.
-- Matching OG + Twitter tags; leaf `og:image` = hero render URL.
+1. For each `*.asset.json`, download the binary from its CDN `url` field and save it as a real file at the corresponding path (`src/assets/gallery-1.jpg`, etc.).
+2. Update all imports across the codebase to point at the real files instead of the `.asset.json` pointers:
+   - `src/components/site/Hero.tsx` — `factory-hero.jpg`
+   - `src/components/site/About.tsx` — `factory-about.jpg`
+   - `src/components/site/Gallery.tsx` — `gallery-1..8.jpg`
+   - Any component using `sanhe-logo.png` (SiteNav / Footer)
+   - `src/routes/index.tsx` — hero preload link
+   - Search the codebase for any other `.asset.json` references and rewrite them.
+3. Rewrite pattern:
+   ```ts
+   // before
+   import g1 from "@/assets/gallery-1.jpg.asset.json";
+   <img src={g1.url} />
 
-### Out of scope (confirm if desired later)
-- Real form submission / email delivery (would require Lovable Cloud).
-- Multi-page routing for individual services and gallery detail pages.
-- CMS-backed gallery.
+   // after
+   import g1 from "@/assets/gallery-1.jpg";
+   <img src={g1} />
+   ```
+4. Delete all 11 `.asset.json` pointer files.
+5. Run `bun run build` to verify every import resolves and the site renders.
+
+### Result
+
+- Repo grows by ~3.3 MB (sum of the current CDN file sizes; the logo alone is 1.5 MB and could optionally be re-exported smaller later).
+- Images are now committed to Git and work on any host — Lovable, Vercel, Netlify, self-hosted, cloned locally.
+- No visual or layout change to the site.
+
+### Note
+
+Once migrated, new images you add via chat will still come in as `.asset.json` pointers by default. If you want to stay fully self-contained, tell me and I'll commit any new images as real files going forward.
