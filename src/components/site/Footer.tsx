@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/sanhe-logo.png.asset.json";
+import logoAsset from "@/assets/sanhe-logo.png";
 
 const links = [
   { href: "#about", label: "About" },
@@ -15,7 +15,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
-              <img src={logoAsset.url} alt="Sanhe Mold" className="h-12 w-12 object-contain" />
+              <img src={logoAsset} alt="Sanhe Mold" className="h-12 w-12 object-contain" />
               <div>
                 <div className="font-display text-lg font-semibold text-white">SANHE MOLD</div>
                 <div className="text-[10px] uppercase tracking-[0.25em] text-slate-400">

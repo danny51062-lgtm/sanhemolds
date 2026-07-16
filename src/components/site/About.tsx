@@ -1,6 +1,6 @@
 import { Reveal } from "./Reveal";
 import { ShieldCheck, Sparkles, HandshakeIcon } from "lucide-react";
-import factoryAbout from "@/assets/factory-about.jpg.asset.json";
+import factoryAbout from "@/assets/factory-about.jpg";
 
 const pillars = [
   {
@@ -64,7 +64,7 @@ export function About() {
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl border border-border shadow-[0_30px_60px_-30px_rgba(15,23,42,0.35)]">
                 <img
-                  src={factoryAbout.url}
+                  src={factoryAbout}
                   alt="Sanhe Mold precision manufacturing workshop"
                   loading="lazy"
                   className="aspect-[4/5] w-full object-cover"

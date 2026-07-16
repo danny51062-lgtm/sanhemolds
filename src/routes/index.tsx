@@ -9,12 +9,12 @@ import { Stats } from "@/components/site/Stats";
 import { Gallery } from "@/components/site/Gallery";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
-import factoryHero from "@/assets/factory-hero.jpg.asset.json";
+import factoryHero from "@/assets/factory-hero.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     links: [
-      { rel: "preload", as: "image", href: factoryHero.url, fetchpriority: "high" },
+      { rel: "preload", as: "image", href: factoryHero, fetchpriority: "high" },
     ],
   }),
   component: Index,
